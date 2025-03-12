@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               // bool check = await db.authenticateUser(email: _emailController.text, password: _passwordController.text);
               // if(check){
               //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Successfully log in!!")));
-              //   Navigator.pushReplacementNamed(context, AppRoutes.BOTTOM_NAVIGATION_BAR);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
               // } else{
               //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Invalid credentials, Please Log in again")));
               // }
