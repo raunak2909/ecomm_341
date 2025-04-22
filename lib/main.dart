@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopping_application/data/remote/api_helper.dart';
 import 'package:shopping_application/data/repository/user_repository.dart';
 import 'package:shopping_application/ui/screens/auth/auth_bloc.dart';
+import 'package:shopping_application/ui/screens/cart/bloc/fetch_cart_bloc.dart';
 import 'package:shopping_application/ui/screens/home_screen.dart';
 import 'package:shopping_application/ui/screens/product/product_bloc.dart';
 import 'package:shopping_application/ui/screens/register/register_bloc.dart';
@@ -22,6 +23,9 @@ void main() {
       ),
       BlocProvider(
         create: (context) => ProductBloc(apiHelper: ApiHelper()),
+      ),
+      BlocProvider(
+        create: (context) => FetchCartBloc(apiHelper: ApiHelper()),
       ),
     ],
     child: MyApp(),

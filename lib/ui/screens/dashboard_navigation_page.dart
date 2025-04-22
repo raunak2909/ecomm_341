@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopping_application/ui/screens/cart/Uicart.dart';
 
 import 'home_screen.dart';
 
@@ -48,6 +49,7 @@ class _DashboardNavigationPageState extends State<DashboardNavigationPage> {
             SizedBox(width: 7),
             IconButton(onPressed: () {
               selectedIndex = 2;
+              Navigator.push(context, MaterialPageRoute(builder: (context) => CartPage(),));
               setState(() {
 
               });

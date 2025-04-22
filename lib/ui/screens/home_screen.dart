@@ -176,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           return InkWell(
                             onTap: () {
                               Navigator.push(
-                                  context, MaterialPageRoute(builder: (context) => ProductDetailPage(),));
+                                  context, MaterialPageRoute(builder: (context) => ProductDetailPage(selectedProduct: state.mProducts[index],),));
                             },
                             child: ProductCard(
                               imgUrl: state.mProducts[index].image!,

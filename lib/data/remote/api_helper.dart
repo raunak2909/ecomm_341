@@ -5,10 +5,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopping_application/app_exceptions.dart';
 
 class ApiHelper {
-  Future<dynamic> getApi({required String url}) async {
+  Future<dynamic> getApi({required String url,  Map<String, String>? mHeaders,
+    bool isHeaderRequired = true,
+  }) async {
+
+    if(isHeaderRequired){
+      mHeaders ??= {};
+
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String token = prefs.getString("token") ?? "";
+      mHeaders["Authorization"] = "Bearer $token";
+    }
+
     var uri = Uri.parse(url);
     try {
-      http.Response response = await http.get(uri);
+      http.Response response = await http.get(uri, headers: mHeaders);
       return returnJsonResponse(response);
     } on SocketException catch (e) {
       throw (FetchDataException(errorMessage: "No internet!!"));
@@ -33,6 +44,8 @@ class ApiHelper {
     try {
       http.Response response = await http.post(uri, headers: mHeaders,
           body: bodyParams != null ? jsonEncode(bodyParams) : null);
+
+      print("Response body : $response");
       return returnJsonResponse(response);
     } on SocketException catch (e) {
       throw (FetchDataException(errorMessage: "No internet!!"));
